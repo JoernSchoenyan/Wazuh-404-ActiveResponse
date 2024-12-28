@@ -54,4 +54,9 @@ Of course, don't forget to add the log files of your Apache2/nginx/whatever to t
 ```
 
 ## The database
-I will push updates from time to time for the database with suspicious URLs but you'll be able to add them yourself in the near future, too. If you want URLs to be added, you can also open an issue.
+I will push updates from time to time for the database with suspicious URLs but you'll be able to add them yourself in the near future, too. If you want URLs to be added, you can also open an issue. I've included an example file of the database. You can see the content of the database like this:
+
+```
+sqlite3 /var/ossec/etc/suspicious_paths.db
+SELECT * FROM suspicious_paths;
+```
