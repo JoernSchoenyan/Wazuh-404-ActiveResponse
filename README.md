@@ -4,17 +4,19 @@ This Active Response for Wazuh compares events with 404 status codes from Apache
 ## What is this all about?
 Every web server is scanned daily for vulnerabilities: bugs in Wordpress installations and extensions, database backups, open login pages, even backdoors left by other crackers. I want to make my life easier and the lives of the bad guys harder.
 
-> 139.9.84.38 - - [22/Dec/2024:04:07:28 +0000] "GET /blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:28 +0000] "GET /workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:29 +0000] "GET /panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:29 +0000] "GET /public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:30 +0000] "GET /apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:31 +0000] "GET /app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:31 +0000] "GET /index.php?s=/index/\\think\\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:32 +0000] "GET /public/index.php?s=/index/\\think\\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:32 +0000] "GET /index.php?lang=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?echo(md5(\"hi\"));?>+/tmp/index1.php HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:33 +0000] "GET /index.php?lang=../../../../../../../../tmp/index1 HTTP/1.0" 404 974 "-"
-> 139.9.84.38 - - [22/Dec/2024:04:07:33 +0000] "GET /containers/json HTTP/1.0" 404 974 "-"
+```
+139.9.84.38 - - [22/Dec/2024:04:07:28 +0000] "GET /blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:28 +0000] "GET /workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:29 +0000] "GET /panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:29 +0000] "GET /public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:30 +0000] "GET /apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:31 +0000] "GET /app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:31 +0000] "GET /index.php?s=/index/\\think\\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:32 +0000] "GET /public/index.php?s=/index/\\think\\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=Hello HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:32 +0000] "GET /index.php?lang=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?echo(md5(\"hi\"));?>+/tmp/index1.php HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:33 +0000] "GET /index.php?lang=../../../../../../../../tmp/index1 HTTP/1.0" 404 974 "-"
+139.9.84.38 - - [22/Dec/2024:04:07:33 +0000] "GET /containers/json HTTP/1.0" 404 974 "-"
+```
 
 This is a small example what happens. We see a lot of 404 HTTP status codes. I'm creating a blacklist of URLs/paths which are clearly signs of vulnerability scanning and this active response for Wazuh blocks attackers using these URLs.
 
